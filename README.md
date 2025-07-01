@@ -1,4 +1,4 @@
-# NSCMandirFinder
+# NSCBhajanViewer
 This repository contains two beginner-friendly Streamlit projects built around Satsang themes:
 
 - **Bhajan Lyrics Viewer**: A website to browse bhajan lyrics in Gujarati and English.
