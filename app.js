@@ -1,19 +1,15 @@
-const bhajans = [
-  {
-    id: 1,
-    title: "Jai Adhyashakti",
-    gujarati: "જય આદ્યશક્તિ, જય આદ્યશક્તિ, મા જય આદ્યશક્તિ...",
-    english: "Jai Adhyashakti, Jai Adhyashakti, Maa Jai Adhyashakti...",
-    translation: "Victory to the primordial energy, the divine mother..."
-  },
-  {
-    id: 2,
-    title: "Om Jai Jagdish",
-    gujarati: "ઓમ જય જગદીશ હરે, સ્વામી જય જગદીશ હરે...",
-    english: "Om Jai Jagdish Hare, Swami Jai Jagdish Hare...",
-    translation: "Glory to the Lord of the Universe, who removes sorrows..."
-  }
-];
+let bhajans = [];
+
+function processAndCleanData(data) {
+  return data
+    .filter(row => row["Name"] && row["English Lyrics"] && row["Gujarati Lyrics"])
+    .map((row, index) => ({
+      id: index + 1,
+      title: row["Name"].trim(),
+      gujarati: row["Gujarati Lyrics"].trim(),
+      english: row["English Lyrics"].trim()
+    }));
+}
 
 function displayBhajans(bhajansToShow) {
   const bhajanList = document.getElementById('bhajanList');
@@ -22,9 +18,11 @@ function displayBhajans(bhajansToShow) {
     bhajansToShow.forEach(bhajan => {
       const card = document.createElement('div');
       card.className = 'bhajan-card';
+      // Replace \n with <br> for the preview snippet
+      const preview = bhajan.gujarati.replace(/\n/g, '<br>').slice(0, 50) + '...';
       card.innerHTML = `
         <h3>${bhajan.title}</h3>
-        <p>${bhajan.gujarati.slice(0, 50)}...</p>
+        <p>${preview}</p>
       `;
       card.addEventListener('click', () => {
         window.location.href = `bhajan.html?id=${bhajan.id}`;
@@ -40,22 +38,37 @@ function loadBhajanDetails() {
   const bhajan = bhajans.find(b => b.id === bhajanId);
   if (bhajan && document.getElementById('bhajanDetails')) {
     document.getElementById('bhajanTitle').textContent = bhajan.title;
-    document.getElementById('gujaratiLyrics').textContent = bhajan.gujarati;
-    document.getElementById('englishLyrics').textContent = bhajan.english;
+    // Replace \n with <br> for lyrics display
+    document.getElementById('gujaratiLyrics').innerHTML = bhajan.gujarati.replace(/\n/g, '<br>');
+    document.getElementById('englishLyrics').innerHTML = bhajan.english.replace(/\n/g, '<br>');
   }
+}
+
+function loadBhajans() {
+  fetch('kirtans.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to load JSON file');
+      return response.text();
+    })
+    .then(text => {
+      const data = JSON.parse(text);
+      bhajans = processAndCleanData(data);
+      displayBhajans(bhajans);
+      loadBhajanDetails();
+    })
+    .catch(err => console.error('Error loading JSON:', err));
 }
 
 document.getElementById('searchBar')?.addEventListener('input', (e) => {
   const searchTerm = e.target.value.toLowerCase();
   const filteredBhajans = bhajans.filter(bhajan =>
     bhajan.title.toLowerCase().includes(searchTerm) ||
-    bhajan.gujarati.includes(searchTerm) ||
-    bhajan.english.includes(searchTerm)
+    bhajan.gujarati.toLowerCase().includes(searchTerm) ||
+    bhajan.english.toLowerCase().includes(searchTerm)
   );
   displayBhajans(filteredBhajans);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  displayBhajans(bhajans);
-  loadBhajanDetails();
+  loadBhajans();
 });
