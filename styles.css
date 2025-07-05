@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, #6b7280, #1f2937);
+  background-color: #121421;
   color: white;
   text-align: center;
   padding: 2rem;
@@ -46,7 +46,10 @@ header h1 {
   gap: 1.5rem;
   padding: 2rem;
 }
-
+img {
+  height: 50px;
+  width: 50px;
+}
 .bhajan-card {
   background: white;
   border-radius: 10px;
