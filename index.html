@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NSC Bhajan Viewer</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSC Bhajan Viewer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Noto+Sans+Gujarati&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>NSC Bhajan Viewer</h1>
-    <div class="search-container">
-      <input type="text" id="searchBar" placeholder="Search bhajans...">
+    <header>
+        <div class="header-container">
+            <h1 id="homeLink">Bhajan Viewer</h1>
+            <div class="search-and-categories">
+                <div id="categoriesLink" class="categories-link">Categories</div>
+                <div class="search-container">
+                    <input type="text" id="searchBar" placeholder="Search bhajans...">
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="bhajan-grid" id="bhajanList">
+        <!-- Bhajan cards will be populated here -->
     </div>
-  </header>
-  <main>
-    <div id="bhajanList" class="bhajan-grid"></div>
-  </main>
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

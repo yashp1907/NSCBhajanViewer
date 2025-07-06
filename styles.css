@@ -1,5 +1,5 @@
 body {
-  font-family:'Quicksand';
+  font-family: 'Quicksand', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f9;
@@ -9,35 +9,57 @@ body {
 header {
   background: linear-gradient(135deg, #6b7280, #1f2937);
   color: white;
-  text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 header h1 {
-  position:relative;
   margin: 0;
   font-size: 2rem;
-  top: 23px;
-  right: 490px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+header h1:hover {
+  color: #e5e7eb;
+}
+
+.search-and-categories {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .search-container {
-  margin-top: 1rem;
+  flex: 1;
 }
 
 #searchBar {
-  position: relative;
-  left: 450px;
-  bottom: 35px;
   padding: 0.75rem;
-  width: 80%;
+  width: 100%;
   max-width: 300px;
   border: none;
   border-radius: 25px;
   font-size: 1rem;
-  font-size: small;
-  font-family:'Quicksand';
+  font-family: 'Quicksand', sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.categories-link {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.categories-link:hover {
+  color: #e5e7eb;
 }
 
 .bhajan-grid {
@@ -61,7 +83,7 @@ header h1 {
   transform: translateY(-5px);
 }
 
-.bhajan-card h3 {
+.bhajan-card h3, .category-section h3 {
   margin: 0;
   font-size: 1.25rem;
   color: #1f2937;
@@ -72,7 +94,47 @@ header h1 {
   font-size: 0.9rem;
 }
 
-.bhajan-page {
+.category-section {
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #6b7280;
+  padding-bottom: 0.5rem;
+}
+
+.bhajan-list {
+  list-style: none;
+  padding: 0;
+}
+
+.bhajan-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.bhajan-item:last-child {
+  border-bottom: none;
+}
+
+.bhajan-link {
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.bhajan-link:hover {
+  color: #6b7280;
+}
+
+.bhajan-page, .categories-page {
   max-width: 800px;
   margin: 2rem auto;
   padding: 1.5rem;
@@ -97,7 +159,7 @@ header h1 {
 .bhajan-page p {
   font-size: 1rem;
   line-height: 1.6;
-  font-family: 'Noto Sans Gujarati', sans-serif; /* For Gujarati text */
+  font-family: 'Noto Sans Gujarati', sans-serif;
 }
 
 .back-link {
@@ -113,7 +175,21 @@ header h1 {
 }
 
 @media (max-width: 768px) {
-  .bhajan-page {
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-and-categories {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #searchBar {
+    max-width: 100%;
+  }
+
+  .bhajan-page, .categories-page {
     margin: 1rem;
     padding: 1rem;
   }
