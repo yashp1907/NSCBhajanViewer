@@ -2,241 +2,364 @@ body {
   font-family: 'Quicksand', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
+  background: linear-gradient(135deg, #f4f4f9 0%, #e8ecef 100%); /* Subtle background gradient */
   color: #333;
+  transition: background-color 0.3s ease;
 }
 
 header {
-    background: #3C3530;
-    color: #FDEEE3;
-    padding: 3rem 30px;
-    position: relative;
+  background: linear-gradient(90deg, #3C3530 0%, #4B3F72 100%); /* Gradient navbar */
+  color: #FDEEE3;
+  padding: 3rem 30px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  transition: all 0.3s ease;
+}
+
+header:hover {
+  transform: translateY(-2px); /* Subtle lift on hover */
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: color 0.3s;
-    position: absolute;
-    left: 40px;
+  margin: 0;
+  font-size: 2.2rem;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+  position: absolute;
+  left: 40px;
 }
 
 header h1:hover {
-    color: #e5e7eb;
+  transform: scale(1.05); /* Slight scale-up animation */
 }
 
 .header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    position: absolute;
-    right: 50px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: absolute;
+  right: 40px;
 }
 
 .search-container {
-    flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 350px;
+  margin-left: 15px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  pointer-events: none;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.search-icon:hover {
+  transform: scale(1.2); /* Subtle icon animation */
 }
 
 #searchBar {
-    padding: 0.75rem;
-    width: 200px;
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-family: 'Quicksand', sans-serif;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0.75rem 0.75rem 2.25rem;
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-family: 'Quicksand', sans-serif;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+}
+
+#searchBar:focus {
+  box-shadow: 0 4px 12px rgba(75, 63, 114, 0.3); /* Indigo shadow on focus */
+  border: 2px solid #4B3F72; /* Matches navbar gradient */
+  transform: translateY(-2px); /* Slight lift on focus */
+}
+
+#searchBar:focus + .search-icon {
+  color: #4B3F72;
+  transform: scale(1.2);
 }
 
 .categories-link {
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: color 0.3s;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #FDEEE3;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Subtle glassmorphism */
+  transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
 .categories-link:hover {
-    color: #e5e7eb;
+  background: #e4857c; /* Soft coral background on hover */
+  color: #3C3530;
+  transform: translateY(-2px);
 }
 
 .bhajan-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 img {
-    height: 50px;
-    width: 50px;
+  height: 50px;
+  width: 50px;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: rotate(10deg) scale(1.1); /* Playful image animation */
 }
 
 .bhajan-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.bhajan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(75, 63, 114, 0.1), rgba(255, 111, 97, 0.1)); /* Updated gradient with coral */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.bhajan-card:hover::before {
+  opacity: 1; /* Subtle gradient overlay on hover */
 }
 
 .bhajan-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: #fffef7; /* Warm off-white on hover */
 }
 
 .bhajan-card h3, .category-section h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: #1f2937;
+  margin: 0;
+  font-size: 1.25rem;
+  color: #1f2937;
+  transition: color 0.3s;
+}
+
+.bhajan-card h3:hover {
+  color: #4B3F72; /* Indigo hover for titles */
 }
 
 .bhajan-card p {
-    color: #6b7280;
-    font-size: 0.9rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  transition: color 0.3s;
 }
 
 .category-section {
-    margin-bottom: 2rem;
-    padding: 1rem 2rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .category-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #6b7280;
-    padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #4B3F72; /* Indigo border */
+  padding-bottom: 0.5rem;
 }
 
 .bhajan-list {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  padding-left: 1rem; /* Subtle left padding for alignment */
 }
 
 .bhajan-item {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.3s;
+}
+
+.bhajan-item:hover {
+  background: #f9fafb; /* Light hover effect */
 }
 
 .bhajan-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .bhajan-link {
-    text-decoration: none;
-    color: #1f2937;
-    font-size: 1.1rem;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 1.1rem;
+  transition: color 0.3s, padding-left 0.3s;
 }
 
 .bhajan-link:hover {
-    color: #6b7280;
+  color: #4B3F72;
+  padding-left: 0.5rem; /* Subtle slide effect */
 }
 
 .bhajan-page, .categories-page {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  padding-left: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+}
+
+.bhajan-page:hover, .categories-page:hover {
+  transform: translateY(-3px);
 }
 
 .bhajan-page h2 {
-    font-size: 2rem;
-    color: #1f2937;
-    text-align: center;
-    margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .bhajan-page h3 {
-    font-size: 1.5rem;
-    color: #1f2937;
-    margin: 1rem 0 0.5rem;
-    margin-top: 50px;
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin: 1.5rem 0 0.5rem;
+  margin-top: 50px;
 }
 
 .bhajan-page p {
-    font-size: 1rem;
-    line-height: 1.6;
-    font-family: 'Noto Sans Gujarati', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  color: #374151;
+  margin-bottom: 20px;
 }
 
 .back-link {
-    display: inline-block;
-    margin: 1rem;
-    color: #1f2937;
-    text-decoration: none;
-    font-size: 1rem;
+  display: inline-block;
+  margin: 1rem;
+  color: #4B3F72;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .back-link:hover {
-    text-decoration: underline;
+  color: #FF6F61; /* Soft coral hover effect */
+  transform: translateX(-5px); /* Slide left on hover */
 }
 
 .video-container {
-    margin-top: 2rem;
-    padding: 1rem;
-    background: #f9fafb;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.video-container:hover {
+  transform: scale(1.02); /* Subtle zoom on hover */
 }
 
 .video-container iframe {
-    border-radius: 8px;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
-    header {
-        padding: 1rem;
-    }
+  header {
+    padding: 1.5rem;
+  }
 
-    .header-container {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
 
-    header h1 {
-        position: static;
-        left: auto;
-    }
+  header h1 {
+    position: static;
+    left: auto;
+  }
 
-    .header-right {
-        position: static;
-        right: auto;
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+  .header-right {
+    position: static;
+    right: auto;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-    #searchBar {
-        width: 100%;
-        max-width: 300px;
-    }
+  .search-wrapper {
+    width: 100%;
+    max-width: 300px;
+  }
 
-    .bhajan-page, .categories-page {
-        margin: 1rem;
-        padding: 1rem;
-    }
+  #searchBar {
+    width: 100%;
+  }
 
-    .video-container iframe {
-        height: 200px;
-    }
+  .video-container iframe {
+    height: 200px;
+  }
+
+  .bhajan-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bhajan-card, .category-section, .bhajan-page, .categories-page {
+  animation: fadeIn 0.5s ease-out; /* Fade-in animation for cards and pages */
 }

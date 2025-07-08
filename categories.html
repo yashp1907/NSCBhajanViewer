@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Noto+Sans+Gujarati&display=swap" rel="stylesheet">
+    <title>Bhajan Viewer</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="header-container">
             <h1 id="homeLink">Bhajan Viewer</h1>
             <div class="header-right">
-                <div id="categoriesLink" class="categories-link">Categories</div>
+            <div id="categoriesLink" class="categories-link">Categories</div>
                 <div class="search-container">
-                    <input type="text" id="searchBar" placeholder="Search bhajans...">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchBar" placeholder="Search Bhajans...">
+                    </div>
                 </div>
             </div>
         </div>
     </header>
-    <main>
-        <div class="categories-page">
-            <h2>Categories</h2>
-            <div id="categoryList"></div>
-        </div>
-    </main>
+
+    <div class="categories-page">
+        <h2>Categories</h2>
+        <div id="categoryList"></div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>

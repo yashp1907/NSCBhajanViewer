@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhajan Viewer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Noto+Sans+Gujarati&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
         <div class="header-container">
             <h1 id="homeLink">Bhajan Viewer</h1>
             <div class="header-right">
-                <div id="categoriesLink" class="categories-link">Categories</div>
+            <div id="categoriesLink" class="categories-link">Categories</div>
                 <div class="search-container">
-                    <input type="text" id="searchBar" placeholder="Search bhajans...">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchBar" placeholder="Search Bhajans...">
+                    </div>
                 </div>
             </div>
         </div>
     </header>
-    <main>
-        <div class="bhajan-grid" id="bhajanList"></div>
-    </main>
+
+    <div class="bhajan-grid" id="bhajanList"></div>
+
     <script src="app.js"></script>
 </body>
 </html>
