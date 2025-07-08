@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhajan Viewer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Noto+Sans+Gujarati&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="header-container">
             <h1 id="homeLink">Bhajan Viewer</h1>
             <div class="header-right">
-                <div id="categoriesLink" class="categories-link">Categories</div>
                 <div class="search-container">
-                    <input type="text" id="searchBar" placeholder="Search bhajans...">
+                    <input type="text" id="searchBar" placeholder="Search Bhajans...">
                 </div>
+                <div id="categoriesLink" class="categories-link">Categories</div>
             </div>
         </div>
     </header>
-    <main>
+
+    <div class="bhajan-page" id="bhajanDetails">
         <a href="index.html" class="back-link">← Back to Bhajans</a>
-        <div class="bhajan-page" id="bhajanDetails">
-            <h2 id="bhajanTitle"></h2>
-            <h3>Gujarati Lyrics</h3>
-            <p id="gujaratiLyrics"></p>
-            <h3>English Lyrics</h3>
-            <p id="englishLyrics"></p>
+        <h2 id="bhajanTitle"></h2>
+        <h3>Gujarati Lyrics</h3>
+        <p id="gujaratiLyrics"></p>
+        <h3>English Lyrics</h3>
+        <p id="englishLyrics"></p>
+        <h3>Video</h3>
+        <div class="video-container">
+            <iframe id="bhajanVideo" width="100%" height="400" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-    </main>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>

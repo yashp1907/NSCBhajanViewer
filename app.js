@@ -8,7 +8,8 @@ function processAndCleanData(data) {
       title: row["Name"].trim(),
       gujarati: row["Gujarati Lyrics"].trim(),
       english: row["English Lyrics"].trim(),
-      category: row["Category:"]?.trim()
+      category: row["Category:"]?.trim(),
+      link: row["Link"]?.trim()
     }));
 }
 
@@ -64,6 +65,17 @@ function loadBhajanDetails() {
     document.getElementById('bhajanTitle').textContent = bhajan.title;
     document.getElementById('gujaratiLyrics').innerHTML = bhajan.gujarati.replace(/\n/g, '<br>');
     document.getElementById('englishLyrics').innerHTML = bhajan.english.replace(/\n/g, '<br>');
+    const videoIframe = document.getElementById('bhajanVideo');
+    if (bhajan.link) {
+      const videoId = bhajan.link.match(/(?:v=)([^&]+)/)?.[1] || bhajan.link.match(/(?:embed\/)([^?]+)/)?.[1];
+      if (videoId) {
+        videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+      } else {
+        videoIframe.style.display = 'none';
+      }
+    } else {
+      videoIframe.style.display = 'none';
+    }
   }
 }
 

@@ -164,6 +164,7 @@ img {
     font-size: 1.5rem;
     color: #1f2937;
     margin: 1rem 0 0.5rem;
+    margin-top: 50px;
 }
 
 .bhajan-page p {
@@ -184,10 +185,23 @@ img {
     text-decoration: underline;
 }
 
+.video-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+}
 
+.video-container iframe {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
 
-
-/*IDK WHAT THIS IS*/
 @media (max-width: 768px) {
     header {
         padding: 1rem;
@@ -220,5 +234,9 @@ img {
     .bhajan-page, .categories-page {
         margin: 1rem;
         padding: 1rem;
+    }
+
+    .video-container iframe {
+        height: 200px;
     }
 }
