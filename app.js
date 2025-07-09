@@ -1,4 +1,5 @@
 let bhajans = [];
+let homeButton = document.getElementById('homeButton');
 
 function processAndCleanData(data) {
   return data
@@ -79,6 +80,52 @@ function loadBhajanDetails() {
   }
 }
 
+function displaySearchSuggestions(searchTerm) {
+  const suggestionsContainer = document.getElementById('searchSuggestions');
+  if (!suggestionsContainer) return;
+
+  suggestionsContainer.innerHTML = '';
+  if (!searchTerm.trim()) {
+    suggestionsContainer.classList.remove('active');
+    return;
+  }
+
+  const searchTermLower = searchTerm.toLowerCase();
+  const filteredBhajans = bhajans
+    .map(bhajan => {
+      const titleMatch = bhajan.title.toLowerCase().includes(searchTermLower) ? 2 : 0;
+      const gujaratiMatch = bhajan.gujarati.toLowerCase().includes(searchTermLower) ? 1 : 0;
+      const englishMatch = bhajan.english.toLowerCase().includes(searchTermLower) ? 1 : 0;
+      return { bhajan, score: titleMatch + gujaratiMatch + englishMatch };
+    })
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.bhajan.title.localeCompare(b.bhajan.title))
+    .map(item => item.bhajan)
+    .slice(0, 5); // Limit to 5 suggestions
+
+  if (filteredBhajans.length === 0) {
+    suggestionsContainer.classList.remove('active');
+    return;
+  }
+
+  filteredBhajans.forEach(bhajan => {
+    const suggestionItem = document.createElement('div');
+    suggestionItem.className = 'suggestion-item';
+    suggestionItem.innerHTML = `
+      ${bhajan.title}
+      <span>${bhajan.category || 'No Category'}</span>
+    `;
+    suggestionItem.addEventListener('click', () => {
+      window.location.href = `bhajan.html?id=${bhajan.id}`;
+      suggestionsContainer.classList.remove('active');
+      document.getElementById('searchBar').value = '';
+    });
+    suggestionsContainer.appendChild(suggestionItem);
+  });
+
+  suggestionsContainer.classList.add('active');
+}
+
 function loadBhajans() {
   fetch('kirtans.json')
     .then(response => {
@@ -112,6 +159,11 @@ function setupNavigation() {
     });   
   }
 
+homeButton?.addEventListener('click', () => {
+    window.location.href = 'index.html';
+    console.log('Home button clicked');
+});
+
   if (categoriesLink) {
     categoriesLink.addEventListener('click', () => {
       window.location.href = 'categories.html';
@@ -134,18 +186,46 @@ function setupThemeToggle() {
   }
 }
 
-document.getElementById('searchBar')?.addEventListener('input', (e) => {
-  const searchTerm = e.target.value.toLowerCase();
-  const filteredBhajans = bhajans.filter(bhajan =>
-    bhajan.title.toLowerCase().includes(searchTerm) ||
-    bhajan.gujarati.toLowerCase().includes(searchTerm) ||
-    bhajan.english.toLowerCase().includes(searchTerm)
-  );
-  displayBhajans(filteredBhajans);
-});
+function setupSearch() {
+  const searchBar = document.getElementById('searchBar');
+  if (searchBar) {
+    searchBar.addEventListener('input', (e) => {
+      const searchTerm = e.target.value;
+      displaySearchSuggestions(searchTerm);
+    });
+
+    searchBar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const searchTerm = e.target.value;
+        const searchTermLower = searchTerm.toLowerCase();
+        const filteredBhajans = bhajans
+          .map(bhajan => {
+            const titleMatch = bhajan.title.toLowerCase().includes(searchTermLower) ? 2 : 0;
+            const gujaratiMatch = bhajan.gujarati.toLowerCase().includes(searchTermLower) ? 1 : 0;
+            const englishMatch = bhajan.english.toLowerCase().includes(searchTermLower) ? 1 : 0;
+            return { bhajan, score: titleMatch + gujaratiMatch + englishMatch };
+          })
+          .filter(item => item.score > 0)
+          .sort((a, b) => b.score - a.score || a.bhajan.title.localeCompare(b.bhajan.title))
+          .map(item => item.bhajan);
+        displayBhajans(filteredBhajans);
+        document.getElementById('searchSuggestions').classList.remove('active');
+      }
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+      const suggestionsContainer = document.getElementById('searchSuggestions');
+      if (!searchBar.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+        suggestionsContainer.classList.remove('active');
+      }
+    });
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   loadBhajans();
   setupNavigation();
   setupThemeToggle();
+  setupSearch();
 });

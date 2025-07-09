@@ -8,17 +8,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+      <header>
         <div class="header-container">
-            <h1>Bhajan Viewer</h1>
+            <h1 id="homeLink">Bhajan Viewer</h1>
             <div class="header-right">
-                <div class="navigation-button" id="homeLink">Home</div>
+                <div class="navigation-button" id="homeButton">Home</div>
                 <div class="navigation-button" id="categoriesLink">Categories</div>
                 <div class="search-container">
                     <div class="search-wrapper">
                         <span class="search-icon">🔍</span>
-                        <input type="text" id="searchBar" placeholder="Search bhajans...">
+                        <input type="text" id="searchBar" placeholder="Search bhajans..." autocomplete="off">
                     </div>
+                    <div id="searchSuggestions" class="search-suggestions"></div>
                 </div>
             </div>
         </div>
