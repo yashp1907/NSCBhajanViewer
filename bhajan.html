@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhajan Viewer</title>
+    <title>Bhajan - Bhajan Viewer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1 id="homeLink">Bhajan Viewer</h1>
+            <h1>Bhajan Viewer</h1>
             <div class="header-right">
-            <div id="categoriesLink" class="categories-link">Categories</div>
+                <div class="navigation-button" id="homeLink">Home</div>
+                <div class="navigation-button" id="categoriesLink">Categories</div>
                 <div class="search-container">
                     <div class="search-wrapper">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="searchBar" placeholder="Search Bhajans...">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchBar" placeholder="Search bhajans...">
                     </div>
                 </div>
             </div>
@@ -33,9 +33,18 @@
         <p id="englishLyrics"></p>
         <h3>Video</h3>
         <div class="video-container">
-            <iframe id="bhajanVideo" width="100%" height="400" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="bhajanVideo" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
+
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">
+        <svg class="sun-icon" viewBox="0 0 24 24">
+            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24">
+            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+    </button>
 
     <script src="app.js"></script>
 </body>

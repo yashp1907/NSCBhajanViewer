@@ -106,15 +106,30 @@ function setupNavigation() {
   const homeLink = document.getElementById('homeLink');
   const categoriesLink = document.getElementById('categoriesLink');
   
-  if (homeLink) {
+  if (homeLink) { 
     homeLink.addEventListener('click', () => {
       window.location.href = 'index.html';
-    });
+    });   
   }
-  
+
   if (categoriesLink) {
     categoriesLink.addEventListener('click', () => {
       window.location.href = 'categories.html';
+    });
+  }
+}
+
+function setupThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
     });
   }
 }
@@ -132,4 +147,5 @@ document.getElementById('searchBar')?.addEventListener('input', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
   loadBhajans();
   setupNavigation();
+  setupThemeToggle();
 });
